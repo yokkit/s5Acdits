@@ -1,0 +1,41 @@
+body{
+    text-align: center;
+    background-image: url(./imgs/laugh_bg.jpg);
+    background-position: center;
+    background-size: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+h1 {
+    margin-top: 0;   
+    font-size: 1.5rem;
+}
+.container{
+    height: 100vh;
+}
+.weather {
+    text-align: left;
+    margin: 2rem;
+    font-size: .9rem;
+}
+.acudits{
+    margin: 30px auto;
+    background-color: rgba(252, 246, 236, .8);
+    width: 50%;
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 5px 5px 5px rgb(119, 108, 87);
+    border:solid rgba(119, 108, 87, 0.3) .5px;
+}
+.jokeText {
+    margin: 3rem 0;
+}
+.acuditButton {
+    width: 150px;
+    height: 40px;
+    border:0;
+    border-radius: 6px;
+    background-color: #3ED3DE;
+    color: rgba(252, 246, 236, .8);
+    font-size: .9rem;
+}
+

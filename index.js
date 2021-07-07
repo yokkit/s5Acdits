@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 var jokeButton = document.querySelector(".acuditButton");
+var jokeText = document.querySelector(".jokeText");
 jokeButton.addEventListener("click", function () { return dadJoke(); });
 var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () {
     var res, data, error_1;
@@ -43,6 +44,7 @@ var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
+                jokeText.innerText = "";
                 return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', {
                         headers: {
                             Accept: "application/json"
@@ -54,6 +56,7 @@ var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () 
             case 2:
                 data = _a.sent();
                 console.log(data.joke);
+                jokeText.innerText = data.joke;
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _a.sent();
