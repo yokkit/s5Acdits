@@ -32,7 +32,7 @@ const dadJoke = async():Promise<void> =>{
                 score: score,
                 date: fecha
             })
-            console.log("Report jokes (array)", reportJokes);
+            console.log("ReportJoke", reportJokes);
         }
         // Reset a joke and show score radio button
         jokeText.innerText="";
@@ -58,4 +58,33 @@ const dadJoke = async():Promise<void> =>{
         console.log(`Something went wrong! -- ${error}`);
     }
 }
+
+//weather api
+// url https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric
+
+const weatherDiv = document.querySelector(".weatherDiv") as HTMLElement;
+const tempDiv = document.querySelector(".tempDiv") as HTMLElement;
+
+const getWeather = async()=>{
+    const response: Response = await fetch(
+        'https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric',{
+            headers:{
+                Accept: "application/json"
+            }
+        });
+    const weatherBCN: {main:{temp:number}; weather:{icon:string}[]} = await response.json();
+    
+    const temperature: number = weatherBCN.main.temp;
+    const icon: string = weatherBCN.weather[0].icon;
+    const tempUrl: string = `http://openweathermap.org/img/wn/${icon}@2x.png`
+    console.log("temperature", temperature);
+    console.log("iconURL", tempUrl);
+    const weatherImg:string = `<img class="weatherImg" src=${tempUrl}>`;
+    weatherDiv.innerHTML = weatherImg;
+    tempDiv.innerHTML = `${temperature} °`
+
+}
+
+getWeather();
+
 

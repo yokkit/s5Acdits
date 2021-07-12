@@ -62,7 +62,7 @@ var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () 
                         score: score,
                         date: fecha
                     });
-                    console.log("Report jokes (array)", reportJokes);
+                    console.log("ReportJoke", reportJokes);
                 }
                 // Reset a joke and show score radio button
                 jokeText.innerText = "";
@@ -92,3 +92,34 @@ var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () 
         }
     });
 }); };
+//weather api
+// url https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric
+var weatherDiv = document.querySelector(".weatherDiv");
+var tempDiv = document.querySelector(".tempDiv");
+var getWeather = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, weatherBCN, temperature, icon, tempUrl, weatherImg;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch('https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric', {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                })];
+            case 1:
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 2:
+                weatherBCN = _a.sent();
+                temperature = weatherBCN.main.temp;
+                icon = weatherBCN.weather[0].icon;
+                tempUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+                console.log("temperature", temperature);
+                console.log("iconURL", tempUrl);
+                weatherImg = "<img class=\"weatherImg\" src=" + tempUrl + ">";
+                weatherDiv.innerHTML = weatherImg;
+                tempDiv.innerHTML = temperature + " \u00B0";
+                return [2 /*return*/];
+        }
+    });
+}); };
+getWeather();
