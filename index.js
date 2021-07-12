@@ -37,14 +37,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var jokeButton = document.querySelector(".acuditButton");
 var jokeText = document.querySelector(".jokeText");
+var scoreDiv = document.querySelector(".score");
+var scoresInput = Array.from(document.querySelectorAll("input"));
+scoreDiv.style.display = "none";
+var reportJokes = [];
+var isScore = false;
+var data;
+;
 jokeButton.addEventListener("click", function () { return dadJoke(); });
 var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () {
-    var res, data, error_1;
+    var score, fecha, res, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
+                score = void 0;
+                // Add to array reportJokes
+                if (isScore) {
+                    score = parseInt(scoresInput.filter(function (score) { return score.checked === true; })[0].value);
+                    scoresInput[0].checked = true;
+                    fecha = new Date().toISOString();
+                    reportJokes.push({
+                        joke: data.joke,
+                        score: score,
+                        date: fecha
+                    });
+                    console.log("Report jokes (array)", reportJokes);
+                }
+                // Reset a joke and show score radio button
                 jokeText.innerText = "";
+                scoreDiv.style.display = "block";
                 return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', {
                         headers: {
                             Accept: "application/json"
@@ -55,8 +77,12 @@ var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () 
                 return [4 /*yield*/, res.json()];
             case 2:
                 data = _a.sent();
-                console.log(data.joke);
+                console.log("joke", data.joke);
                 jokeText.innerText = data.joke;
+                // only the first time
+                if (!isScore) {
+                    isScore = true;
+                }
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _a.sent();
