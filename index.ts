@@ -60,7 +60,6 @@ const dadJoke = async():Promise<void> =>{
 }
 
 //weather api
-// url https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric
 
 const weatherDiv = document.querySelector(".weatherDiv") as HTMLElement;
 const tempDiv = document.querySelector(".tempDiv") as HTMLElement;

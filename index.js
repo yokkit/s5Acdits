@@ -93,7 +93,6 @@ var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () 
     });
 }); };
 //weather api
-// url https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric
 var weatherDiv = document.querySelector(".weatherDiv");
 var tempDiv = document.querySelector(".tempDiv");
 var getWeather = function () { return __awaiter(_this, void 0, void 0, function () {
