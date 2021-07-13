@@ -101,15 +101,13 @@ const getWeather = async()=>{
                 Accept: "application/json"
             }
         });
-    const weatherBCN: {main:{temp:number}; weather:{icon:string}[]} = await response.json();
+    const weatherBCN: {main:{temp:number}; weather:{main:string}[]} = await response.json();
     
     const temperature: number = weatherBCN.main.temp;
-    const icon: string = weatherBCN.weather[0].icon;
-    const tempUrl: string = `http://openweathermap.org/img/wn/${icon}@2x.png`
+    const weather: string = weatherBCN.weather[0].main;
     console.log("temperature", temperature);
-    console.log("iconURL", tempUrl);
-    const weatherImg:string = `<img class="weatherImg" src=${tempUrl}>`;
-    weatherDiv.innerHTML = weatherImg;
+    console.log("weather", weather);
+    weatherDiv.innerHTML = weather;
     tempDiv.innerHTML = `${temperature} °`
 
 }

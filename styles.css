@@ -25,6 +25,7 @@ h3 {
     margin: 0;
     font-size: .9rem;
     display: inline;
+    padding-right:0.4rem;
 }
 .weatherImg {
     width: 70px;
