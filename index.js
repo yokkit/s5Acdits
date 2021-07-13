@@ -136,7 +136,7 @@ var getNorrisJoke = function () { return __awaiter(_this, void 0, void 0, functi
 var weatherDiv = document.querySelector(".weatherDiv");
 var tempDiv = document.querySelector(".tempDiv");
 var getWeather = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, weatherBCN, temperature, weather;
+    var response, weatherBCN, weather;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, fetch('https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric', {
@@ -149,12 +149,9 @@ var getWeather = function () { return __awaiter(_this, void 0, void 0, function 
                 return [4 /*yield*/, response.json()];
             case 2:
                 weatherBCN = _a.sent();
-                temperature = weatherBCN.main.temp;
                 weather = weatherBCN.weather[0].main;
-                console.log("temperature", temperature);
                 console.log("weather", weather);
                 weatherDiv.innerHTML = weather;
-                tempDiv.innerHTML = temperature + " \u00B0";
                 return [2 /*return*/];
         }
     });

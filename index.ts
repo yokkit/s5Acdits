@@ -101,15 +101,11 @@ const getWeather = async()=>{
                 Accept: "application/json"
             }
         });
-    const weatherBCN: {main:{temp:number}; weather:{main:string}[]} = await response.json();
+    const weatherBCN: {weather:{main:string}[]} = await response.json();
     
-    const temperature: number = weatherBCN.main.temp;
     const weather: string = weatherBCN.weather[0].main;
-    console.log("temperature", temperature);
     console.log("weather", weather);
     weatherDiv.innerHTML = weather;
-    tempDiv.innerHTML = `${temperature} °`
-
 }
 
 getWeather();
