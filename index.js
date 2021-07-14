@@ -46,10 +46,12 @@ var isScore = false;
 var dataDad;
 var dataNorris;
 var isDad = false;
+// Set Joke button
 jokeButton.addEventListener("click", function () { return showAJoke(); });
 var showAJoke = function () {
     try {
         var score = void 0;
+        changeBackground();
         // Add to array reportJokes
         if (isScore) {
             addReportScore(score);
@@ -162,3 +164,14 @@ var getWeather = function () { return __awaiter(_this, void 0, void 0, function 
     });
 }); };
 getWeather();
+// Background blob setting
+var containerDiv = document.querySelector(".container");
+var blobLeftDiv = document.querySelector(".blobLeft");
+var blobRightDiv = document.querySelector(".blobRight");
+var mainImageNames = ["blob1", "blob2", "blob3"];
+var changeBackground = function () {
+    var lenNum = Math.floor(Math.random() * 3);
+    containerDiv.style.backgroundImage = "url(./imgs/" + mainImageNames[lenNum] + ".svg)";
+    blobLeftDiv.src = "./imgs/" + mainImageNames[lenNum] + "-1.svg";
+    blobRightDiv.src = "./imgs/" + mainImageNames[lenNum] + "-2.svg";
+};
