@@ -119,9 +119,10 @@ const mainImageNames: string[] = ["blob1", "blob2", "blob3"];
 
 const changeBackground = ():void => {
     let lenNum: number = Math.floor(Math.random() * 3);
-    containerDiv.style.backgroundImage = `url(./imgs/${mainImageNames[lenNum]}.svg)`;
-    blobLeftDiv.src = `./imgs/${mainImageNames[lenNum]}-1.svg`;
-    blobRightDiv.src = `./imgs/${mainImageNames[lenNum]}-2.svg`;
+    let selectedImage: string = mainImageNames[lenNum];
+    containerDiv.style.backgroundImage = `url(./imgs/${selectedImage}.svg)`;
+    blobLeftDiv.src = `./imgs/${selectedImage}-1.svg`;
+    blobRightDiv.src = `./imgs/${selectedImage}-2.svg`;
 }
 
 
