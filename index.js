@@ -41,54 +41,119 @@ var scoreDiv = document.querySelector(".score");
 var scoresInput = Array.from(document.querySelectorAll("input"));
 scoreDiv.style.display = "none";
 var reportJokes = [];
-var isScore = false;
-var data;
 ;
-jokeButton.addEventListener("click", function () { return dadJoke(); });
-var dadJoke = function () { return __awaiter(_this, void 0, void 0, function () {
-    var score, fecha, res, error_1;
+var isScore = false;
+var dataDad;
+var dataNorris;
+var isDad = false;
+jokeButton.addEventListener("click", function () { return showAJoke(); });
+var showAJoke = function () {
+    try {
+        var score = void 0;
+        // Add to array reportJokes
+        if (isScore) {
+            addReportScore(score);
+        }
+        // Reset a joke and show radio buttons of scores
+        jokeText.innerText = "";
+        scoreDiv.style.display = "block";
+        isDad = !isDad;
+        // Get a new joke and show it
+        if (isDad) {
+            getDaddyJoke();
+        }
+        else {
+            getNorrisJoke();
+        }
+        // only the first time
+        if (!isScore) {
+            isScore = true;
+        }
+    }
+    catch (error) {
+        console.log("Something went wrong! -- " + error);
+    }
+};
+var addReportScore = function (score) {
+    score = parseInt(scoresInput.filter(function (score) { return score.checked === true; })[0].value);
+    scoresInput[0].checked = true;
+    var fecha = new Date().toISOString();
+    var selectedJoke;
+    if (isDad) {
+        selectedJoke = dataDad.joke;
+    }
+    else {
+        selectedJoke = dataNorris.value;
+    }
+    reportJokes.push({
+        joke: selectedJoke,
+        score: score,
+        date: fecha
+    });
+    console.log("ReportJoke", reportJokes);
+};
+var getDaddyJoke = function () { return __awaiter(_this, void 0, void 0, function () {
+    var res;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                score = void 0;
-                // Add to array reportJokes
-                if (isScore) {
-                    score = parseInt(scoresInput.filter(function (score) { return score.checked === true; })[0].value);
-                    scoresInput[0].checked = true;
-                    fecha = new Date().toISOString();
-                    reportJokes.push({
-                        joke: data.joke,
-                        score: score,
-                        date: fecha
-                    });
-                    console.log("Report jokes (array)", reportJokes);
-                }
-                // Reset a joke and show score radio button
-                jokeText.innerText = "";
-                scoreDiv.style.display = "block";
-                return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', {
-                        headers: {
-                            Accept: "application/json"
-                        }
-                    })];
+            case 0: return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                })];
             case 1:
                 res = _a.sent();
                 return [4 /*yield*/, res.json()];
             case 2:
-                data = _a.sent();
-                console.log("joke", data.joke);
-                jokeText.innerText = data.joke;
-                // only the first time
-                if (!isScore) {
-                    isScore = true;
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                error_1 = _a.sent();
-                console.log("Something went wrong! -- " + error_1);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                dataDad = _a.sent();
+                console.log("joke", dataDad.joke);
+                jokeText.innerText = dataDad.joke;
+                return [2 /*return*/];
         }
     });
 }); };
+var getNorrisJoke = function () { return __awaiter(_this, void 0, void 0, function () {
+    var res;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch('https://api.chucknorris.io/jokes/random', {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                })];
+            case 1:
+                res = _a.sent();
+                return [4 /*yield*/, res.json()];
+            case 2:
+                dataNorris = _a.sent();
+                console.log("joke", dataNorris.value);
+                jokeText.innerText = dataNorris.value;
+                return [2 /*return*/];
+        }
+    });
+}); };
+//weather api
+var weatherDiv = document.querySelector(".weatherDiv");
+var tempDiv = document.querySelector(".tempDiv");
+var getWeather = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, weatherBCN, weather;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch('https://api.openweathermap.org/data/2.5/weather?q=barcelona&appid=ac5afeceedbfd9b43156af672f440fd1&units=metric', {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                })];
+            case 1:
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 2:
+                weatherBCN = _a.sent();
+                weather = weatherBCN.weather[0].main;
+                console.log("weather", weather);
+                weatherDiv.innerHTML = weather;
+                return [2 /*return*/];
+        }
+    });
+}); };
+getWeather();
