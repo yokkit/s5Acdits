@@ -1,19 +1,30 @@
 body{
     text-align: center;
-    background-image: url(./imgs/laugh_bg.jpg);
-    background-position: center;
-    background-size: 100%;
     font-family: 'Montserrat', sans-serif;
 }
 h1 {
     margin-top: 0;   
     font-size: 1.5rem;
 }
-h3 {
-    font-size: 0.8rem;
-}
 .container{
     height: 100vh;
+    background-image: url(imgs/blob3.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 800px;
+    position: relative;
+}
+.blobLeft{
+    position: absolute;
+    width: 15%;
+    top: 300px;
+    left: 30px;
+}
+.blobRight{
+    position: absolute;
+    width: 15%;
+    top: 70px;
+    right: 30px;
 }
 .hoy {
     text-align: left;
@@ -37,25 +48,35 @@ h3 {
 }
 .acudits{
     margin: 0 auto 30px;
-    background-color: rgba(252, 246, 236, .8);
-    width: 50%;
+    width: 40%;
     padding: 2rem;
-    border-radius: 6px;
-    box-shadow: 5px 5px 5px rgb(119, 108, 87);
-    border:solid rgba(119, 108, 87, 0.3) .5px;
+    position: relative;
 }
 .jokeText {
-    margin: 2rem 0;
-    font-size: 1.5rem;
+    margin: 2rem 0 0;
+    font-size: 1.1rem;
+    padding: 0 2rem 2rem;
 }
 .acuditButton {
     width: 150px;
     height: 40px;
-    border:0;
-    border-radius: 6px;
-    background-color: #3dcfda;
-    color: rgba(252, 246, 236, .8);
+    border:solid 1px transparent;
+    border-radius: 20px;
+    background-color: #FFC83D;
+    color: black;
     font-size: .9rem;
+    position: relative;
+}
+.acuditButton::before {
+    content: '';
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	border: 1px solid black;
+    border-radius: 20px;
 }
 
 .acuditButton:active {
@@ -76,4 +97,6 @@ input[type="radio"]:checked + label{
     background-color: #3dcfda;
     border-radius: 3px;
 }
+
+/* add media query */
 

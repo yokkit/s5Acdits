@@ -14,11 +14,13 @@ let dataDad: {joke: string};
 let dataNorris: {value:string};
 let isDad: boolean = false;
 
+// Set Joke button
 jokeButton.addEventListener("click", ()=>showAJoke());
 
 const showAJoke = ():void =>{
     try{
         let score: number;
+        changeBackground();
         // Add to array reportJokes
         if(isScore){
             addReportScore(score);
@@ -107,7 +109,21 @@ const getWeather = async()=>{
     console.log("weather", weather);
     weatherDiv.innerHTML = weather;
 }
-
 getWeather();
+
+// Background blob setting
+const containerDiv = document.querySelector(".container") as HTMLElement;
+const blobLeftDiv = document.querySelector(".blobLeft") as HTMLImageElement;
+const blobRightDiv = document.querySelector(".blobRight") as HTMLImageElement;
+const mainImageNames: string[] = ["blob1", "blob2", "blob3"];
+
+const changeBackground = ():void => {
+    let lenNum: number = Math.floor(Math.random() * 3);
+    containerDiv.style.backgroundImage = `url(./imgs/${mainImageNames[lenNum]}.svg)`;
+    blobLeftDiv.src = `./imgs/${mainImageNames[lenNum]}-1.svg`;
+    blobRightDiv.src = `./imgs/${mainImageNames[lenNum]}-2.svg`;
+}
+
+
 
 
